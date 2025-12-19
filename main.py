@@ -107,14 +107,12 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
             reply_markup=create_main_menu()
         )
 
-async def main() -> None:
-    """Start the bot"""
+# Build and run the application
+if __name__ == "__main__":
     app = Application.builder().token(BOT_TOKEN).build()
     
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CallbackQueryHandler(button_callback))
     
     print("Bot is running...")
-    await app.run_polling()
-
-asyncio.run(main())
+    app.run_polling()
